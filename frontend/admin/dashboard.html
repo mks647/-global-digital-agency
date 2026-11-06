@@ -1,0 +1,92 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard | Global Digital Agency</title>
+  <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">GLOBAL<span> DIGITAL</span></div>
+    <div class="admin-actions">
+      <span id="admin-name">Admin</span>
+      <button id="logout-button">Logout</button>
+    </div>
+  </header>
+
+  <main class="dashboard">
+    <div class="page-heading">
+      <div>
+        <p class="eyebrow">PRIVATE ADMIN AREA</p>
+        <h1>Dashboard</h1>
+        <p class="subtitle">Manage customer enquiries.</p>
+      </div>
+      <button id="refresh-button" class="secondary-button">↻ Refresh</button>
+    </div>
+
+    <section class="stats">
+      <article class="stat-card">
+        <span>Total Enquiries</span>
+        <strong id="total-count">0</strong>
+      </article>
+      <article class="stat-card">
+        <span>New Enquiries</span>
+        <strong id="new-count">0</strong>
+      </article>
+      <article class="stat-card">
+        <span>In Progress</span>
+        <strong id="progress-count">0</strong>
+      </article>
+      <article class="stat-card">
+        <span>Completed</span>
+        <strong id="completed-count">0</strong>
+      </article>
+    </section>
+
+    <section class="enquiries-section">
+      <div class="section-heading">
+        <h2>Customer Enquiries</h2>
+        <select id="status-filter">
+          <option value="all">All Statuses</option>
+          <option value="new">New</option>
+          <option value="contacted">Contacted</option>
+          <option value="in_progress">In Progress</option>
+          <option value="completed">Completed</option>
+          <option value="cancelled">Cancelled</option>
+        </select>
+      </div>
+
+      <input id="search-input" class="search-input"
+        placeholder="Search name, email or business...">
+
+      <p id="dashboard-message" role="status"></p>
+
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Customer</th>
+              <th>Contact</th>
+              <th>Business</th>
+              <th>Service</th>
+              <th>Message</th>
+              <th>Date</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="enquiries-table">
+            <tr>
+              <td colspan="8">Loading enquiries...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="dashboard.js"></script>
+</body>
+</html>

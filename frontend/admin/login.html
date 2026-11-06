@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login | Global Digital Agency</title>
+  <link rel="stylesheet" href="login.css">
+</head>
+<body>
+  <main class="login-wrapper">
+    <section class="login-card">
+      <div class="brand">GLOBAL<span> DIGITAL</span></div>
+      <p class="eyebrow">PRIVATE ADMIN AREA</p>
+      <h1>Welcome back.</h1>
+      <p class="subtitle">Sign in to manage your agency.</p>
+
+      <form id="login-form">
+        <label for="username">Username</label>
+        <input id="username" name="username" type="text"
+          autocomplete="username" required placeholder="Enter username">
+
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password"
+          autocomplete="current-password" required placeholder="Enter password">
+
+        <button id="login-button" type="submit">Sign in →</button>
+        <p id="login-message" role="status"></p>
+      </form>
+
+      <a class="back-link" href="../index.html">← Back to website</a>
+      <footer>© Global Digital Agency</footer>
+    </section>
+  </main>
+
+  <script src="login.js"></script>
+</body>
+</html>
