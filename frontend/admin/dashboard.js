@@ -1,5 +1,5 @@
 
-const API_URL = "http://127.0.0.1:5000/api/admin";
+const API_URL = "https://global-digital-agency-api.onrender.com/api/admin";
 
 const tableBody = document.getElementById("enquiries-table");
 const dashboardMessage = document.getElementById("dashboard-message");

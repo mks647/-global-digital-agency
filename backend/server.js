@@ -1,4 +1,4 @@
-
+const pool = require("./config/db");
 const express = require("express");
 const cors = require("cors");
 const helmet = require("helmet");
@@ -52,12 +52,27 @@ app.get("/", (req, res) => {
   });
 });
 
-app.get("/api/health", (req, res) => {
-  res.json({
-    success: true,
-    message: "Backend is healthy"
-  });
+
+app.get("/api/health", async (req, res) => {
+  try {
+    const [rows] = await pool.query("SELECT 1 AS db");
+
+    res.json({
+      success: true,
+      message: "Backend and Aiven database are connected",
+      database: rows[0].db
+    });
+  } catch (error) {
+    console.error("Database health check failed:", error);
+
+    res.status(500).json({
+      success: false,
+      message: "Database connection failed",
+      code: error.code || "UNKNOWN_ERROR"
+    });
+  }
 });
+
 
 // Existing customer enquiry API
 app.use("/api/enquiries", enquiryRoutes);
