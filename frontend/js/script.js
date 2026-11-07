@@ -1,6 +1,4 @@
 
-// Global Digital Agency — Navigation and Enquiry Form
-
 document.addEventListener("DOMContentLoaded", () => {
   const menuButton = document.querySelector(".menu-toggle");
   const nav = document.querySelector("#primary-nav");
@@ -8,9 +6,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const contactForm = document.getElementById("contact-form");
   const formNote = document.getElementById("form-note");
 
-  const API_URL = "https://global-digital-agency.onrender.com/api";
+  const API_URL =
+    "https://global-digital-agency-api.onrender.com/api";
 
-  // Update copyright year
   if (year) {
     year.textContent = new Date().getFullYear();
   }
@@ -20,10 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
     menuButton.addEventListener("click", () => {
       const isOpen = nav.classList.toggle("is-open");
 
-      menuButton.setAttribute(
-        "aria-expanded",
-        String(isOpen)
-      );
+      menuButton.setAttribute("aria-expanded", String(isOpen));
 
       menuButton.setAttribute(
         "aria-label",
@@ -31,41 +26,35 @@ document.addEventListener("DOMContentLoaded", () => {
       );
     });
 
-    nav.querySelectorAll("a").forEach((link) => {
+    nav.querySelectorAll("a").forEach(link => {
       link.addEventListener("click", () => {
         nav.classList.remove("is-open");
-
         menuButton.setAttribute("aria-expanded", "false");
         menuButton.setAttribute("aria-label", "Open navigation");
       });
     });
 
-    document.addEventListener("keydown", (event) => {
+    document.addEventListener("keydown", event => {
       if (event.key === "Escape") {
         nav.classList.remove("is-open");
-
         menuButton.setAttribute("aria-expanded", "false");
         menuButton.setAttribute("aria-label", "Open navigation");
       }
     });
   }
 
-  // Customer Enquiry Form
+  // Enquiry Form
   if (contactForm && formNote) {
-    contactForm.addEventListener("submit", async (event) => {
+    contactForm.addEventListener("submit", async event => {
       event.preventDefault();
 
-      if (!contactForm.reportValidity()) {
-        return;
-      }
+      if (!contactForm.reportValidity()) return;
 
       const submitButton = contactForm.querySelector(
         'button[type="submit"]'
       );
 
-      if (!submitButton) {
-        return;
-      }
+      if (!submitButton) return;
 
       submitButton.disabled = true;
       submitButton.textContent = "Submitting...";
@@ -82,16 +71,13 @@ document.addEventListener("DOMContentLoaded", () => {
       };
 
       try {
-        const response = await fetch(
-          `${API_URL}/enquiries`,
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify(formData)
-          }
-        );
+        const response = await fetch(`${API_URL}/enquiries`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(formData)
+        });
 
         const result = await response.json();
 
@@ -105,7 +91,6 @@ document.addEventListener("DOMContentLoaded", () => {
           "Thank you! Your enquiry has been submitted successfully.";
 
         formNote.style.color = "green";
-
         contactForm.reset();
 
       } catch (error) {
@@ -113,7 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         formNote.textContent =
           error.message === "Failed to fetch"
-            ? "Unable to connect to the server. Please try again."
+            ? "Unable to connect to server. Please try again."
             : error.message;
 
         formNote.style.color = "red";
