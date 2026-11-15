@@ -3,6 +3,19 @@ const mysql = require("mysql2/promise");
 const fs = require("fs");
 require("dotenv").config();
 
+const requiredEnv = [
+  "DB_HOST",
+  "DB_USER",
+  "DB_PASSWORD",
+  "DB_NAME"
+];
+
+for (const key of requiredEnv) {
+  if (!process.env[key]) {
+    throw new Error(`Missing required environment variable: ${key}`);
+  }
+}
+
 let ca;
 
 if (process.env.DB_CA) {
@@ -18,18 +31,14 @@ const pool = mysql.createPool({
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
 
-  ssl: ca
-    ? {
-        ca,
-        rejectUnauthorized: true
-      }
-    : {
-        rejectUnauthorized: true
-      },
+  ssl: {
+    ...(ca ? { ca } : {}),
+    rejectUnauthorized: true
+  },
 
   waitForConnections: true,
   connectionLimit: 10,
-  queueLimit: 0
+  queueLimit: 100
 });
 
 module.exports = pool;

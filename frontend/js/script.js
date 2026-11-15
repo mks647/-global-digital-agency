@@ -111,3 +111,36 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
+/* PREMIUM BUTTON INTERACTION */
+
+document.querySelectorAll(
+  ".talk-button, .admin-button, .hero-primary-button, .hero-secondary-button"
+).forEach((button) => {
+  button.addEventListener("pointerdown", () => {
+    button.style.transform = "scale(0.97)";
+  });
+
+  button.addEventListener("pointerup", () => {
+    button.style.transform = "";
+  });
+
+  button.addEventListener("pointerleave", () => {
+    button.style.transform = "";
+  });
+});
+
+/* SMOOTH NAVIGATION */
+document.querySelectorAll('a[href^="#"]').forEach((link) => {
+  link.addEventListener("click", (event) => {
+    const target = document.querySelector(link.getAttribute("href"));
+
+    if (target) {
+      event.preventDefault();
+      target.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+    }
+  });
+});

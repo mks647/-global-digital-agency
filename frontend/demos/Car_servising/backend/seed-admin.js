@@ -1,0 +1,1 @@
+require('dotenv').config();require('./auth').seedAdmin().then(()=>process.exit()).catch(e=>{console.error(e.message);process.exit(1)});

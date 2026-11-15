@@ -1,12 +1,20 @@
 
 const session = require("express-session");
 const MySQLStore = require("express-mysql-session")(session);
+const fs = require("fs");
 require("dotenv").config();
+
+if (!process.env.SESSION_SECRET ||
+    process.env.SESSION_SECRET.length < 32) {
+  throw new Error("SESSION_SECRET must be at least 32 characters");
+}
 
 let ca;
 
 if (process.env.DB_CA) {
   ca = process.env.DB_CA;
+} else if (process.env.DB_CA_PATH) {
+  ca = fs.readFileSync(process.env.DB_CA_PATH, "utf8");
 }
 
 const sessionStore = new MySQLStore({
@@ -16,14 +24,10 @@ const sessionStore = new MySQLStore({
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
 
-  ssl: ca
-    ? {
-        ca,
-        rejectUnauthorized: true
-      }
-    : {
-        rejectUnauthorized: true
-      },
+  ssl: {
+    ...(ca ? { ca } : {}),
+    rejectUnauthorized: true
+  },
 
   createDatabaseTable: true,
 
@@ -38,11 +42,8 @@ const sessionStore = new MySQLStore({
 
 const sessionMiddleware = session({
   name: "gda_admin_session",
-
   secret: process.env.SESSION_SECRET,
-
   store: sessionStore,
-
   resave: false,
   saveUninitialized: false,
 
