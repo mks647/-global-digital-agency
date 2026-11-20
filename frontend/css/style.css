@@ -993,3 +993,337 @@ h1,h2,h3{font-family:Manrope,"DM Sans",sans-serif}
         animation: none;
     }
 }
+
+/* =========================================
+   WHO WE HELP - PREMIUM ANIMATED SECTION
+========================================= */
+
+.who-we-help {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background: #111114;
+  color: #fff;
+}
+
+/* Animated background graphics */
+.who-we-help::before {
+  content: "";
+  position: absolute;
+  width: 550px;
+  height: 550px;
+  top: -180px;
+  left: -180px;
+  background: radial-gradient(
+    circle,
+    rgba(242, 13, 75, 0.22),
+    transparent 70%
+  );
+  filter: blur(65px);
+  animation: demoBackgroundMove 12s ease-in-out infinite alternate;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.who-we-help::after {
+  content: "";
+  position: absolute;
+  width: 450px;
+  height: 450px;
+  bottom: -200px;
+  right: -150px;
+  background: radial-gradient(
+    circle,
+    rgba(130, 70, 255, 0.12),
+    transparent 70%
+  );
+  filter: blur(70px);
+  animation: demoBackgroundMove 15s ease-in-out infinite alternate-reverse;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Animated business rows */
+.who-we-help .business-item {
+  position: relative;
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+  transition:
+    background 0.35s ease,
+    transform 0.35s ease,
+    border-color 0.35s ease;
+}
+
+.who-we-help .business-item:hover {
+  background: rgba(255,255,255,0.045);
+  border-color: #f20d4b;
+  transform: translateX(8px);
+}
+
+.who-we-help .business-item a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.who-we-help .business-item:hover a {
+  color: #f20d4b;
+}
+
+/* Number animation */
+.who-we-help .business-number {
+  color: #f20d4b;
+  transition: transform 0.35s ease;
+}
+
+.who-we-help .business-item:hover .business-number {
+  transform: scale(1.15);
+}
+
+/* Click feedback */
+.who-we-help .business-item:active {
+  transform: scale(0.985);
+}
+
+/* Smooth background movement */
+@keyframes demoBackgroundMove {
+  from {
+    transform: translate(0, 0) scale(1);
+  }
+  to {
+    transform: translate(100px, 80px) scale(1.15);
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .who-we-help *,
+  .who-we-help::before,
+  .who-we-help::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* =====================================
+   INDUSTRIES - PREMIUM MOTION EFFECTS
+===================================== */
+
+.industries {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background: #151417;
+  color: #fff;
+}
+
+.industries::before {
+  content: "";
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  left: -200px;
+  top: -200px;
+  background: radial-gradient(
+    circle,
+    rgba(242, 13, 75, 0.20),
+    transparent 70%
+  );
+  filter: blur(80px);
+  animation: industryGlow 14s ease-in-out infinite alternate;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.industries::after {
+  content: "";
+  position: absolute;
+  width: 450px;
+  height: 450px;
+  right: -150px;
+  bottom: -200px;
+  background: radial-gradient(
+    circle,
+    rgba(120, 80, 255, 0.13),
+    transparent 70%
+  );
+  filter: blur(80px);
+  animation: industryGlow 18s ease-in-out infinite alternate-reverse;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.industries-copy,
+.industry-list {
+  position: relative;
+  z-index: 1;
+}
+
+.industries-copy .section-kicker {
+  color: #ff245b;
+}
+
+.industries-copy h2 {
+  color: white;
+}
+
+.industries-copy h2 span {
+  color: #a3a3a3;
+}
+
+.industries-copy > p:not(.section-kicker) {
+  color: #c6c6c6;
+}
+
+/* BUSINESS ROW */
+.industry-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  padding: 28px 18px;
+  border-top: 1px solid rgba(255,255,255,0.16);
+  text-decoration: none;
+  color: white;
+  overflow: hidden;
+  transition:
+    background 0.35s ease,
+    transform 0.35s ease,
+    border-color 0.35s ease;
+}
+
+.industry-item:last-child {
+  border-bottom: 1px solid rgba(255,255,255,0.16);
+}
+
+.industry-item::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(242,13,75,0.13),
+    transparent
+  );
+  transform: translateX(-100%);
+  transition: transform 0.45s ease;
+  pointer-events: none;
+}
+
+.industry-item:hover::before {
+  transform: translateX(0);
+}
+
+.industry-item:hover {
+  transform: translateX(8px);
+  border-color: #f20d4b;
+}
+
+.industry-index {
+  position: relative;
+  z-index: 1;
+  min-width: 50px;
+  color: #ff245b;
+  font-size: 14px;
+  font-weight: 700;
+  transition: transform 0.35s ease;
+}
+
+.industry-info {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 8px;
+}
+
+.industry-info strong {
+  font-size: 22px;
+  transition: color 0.3s ease;
+}
+
+.industry-info small {
+  font-size: 15px;
+  color: #bdbdbd;
+  line-height: 1.5;
+}
+
+.industry-arrow {
+  position: relative;
+  z-index: 1;
+  font-size: 22px;
+  color: #ff245b;
+  opacity: 0.45;
+  transform: translate(-8px, 8px);
+  transition: all 0.35s ease;
+}
+
+.industry-item:hover .industry-arrow {
+  opacity: 1;
+  transform: translate(0, 0) rotate(45deg);
+}
+
+.industry-item:hover .industry-info strong {
+  color: #ff245b;
+}
+
+.industry-item:hover .industry-index {
+  transform: scale(1.15);
+}
+
+.industry-item:active {
+  transform: scale(0.985);
+}
+
+.industry-item:focus-visible {
+  outline: 2px solid #ff245b;
+  outline-offset: 3px;
+}
+
+@keyframes industryGlow {
+  from {
+    transform: translate(0, 0) scale(1);
+  }
+  to {
+    transform: translate(100px, 80px) scale(1.15);
+  }
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .industry-item {
+    gap: 15px;
+    padding: 22px 10px;
+  }
+
+  .industry-info strong {
+    font-size: 17px;
+  }
+
+  .industry-info small {
+    font-size: 13px;
+  }
+
+  .industry-index {
+    min-width: 32px;
+    font-size: 12px;
+  }
+
+  .industry-arrow {
+    font-size: 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .industries::before,
+  .industries::after {
+    animation: none;
+  }
+
+  .industry-item,
+  .industry-item::before,
+  .industry-arrow {
+    transition: none;
+  }
+}
